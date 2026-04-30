@@ -44,7 +44,7 @@
         <form action="" method="POST" class="space-y-12">
             
             <!-- 1. Personal Identity Section -->
-            <section>
+            <section id="personalIdentitySection" class="transition-all duration-500 ease-in-out">
                 <div class="flex items-center gap-4 mb-6">
                     <span class="w-8 h-8 rounded-full bg-[#1a3d2c] text-white flex items-center justify-center font-bold text-sm">1</span>
                     <div>
@@ -72,15 +72,48 @@
                     <label class="text-xs font-semibold text-gray-600 mb-2 block uppercase tracking-wide">Student ID Number <span class="text-red-500">*</span></label>
                     <input type="text" placeholder="2021-01234" class="w-full bg-white border border-gray-200 p-4 rounded-lg focus:ring-2 focus:ring-[#1a3d2c] outline-none transition">
                 </div>
+
+                <div class="mt-6">
+                    <p class="text-sm text-gray-600">Forgot your student ID? <span onclick="toggleOptions()" class="text-[#1a3d2c] font-semibold cursor-pointer underline">See options</span></p>
+                    
+                    <!-- Options Dropdown -->
+                    <div id="optionsDropdown" class="hidden mt-4 bg-white border border-gray-200 rounded-lg shadow-lg p-4">
+                        <h4 class="font-semibold text-gray-800 mb-3">Choose verification method:</h4>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded">
+                                <input type="radio" name="verificationMethod" value="studentId" class="text-[#1a3d2c]" onchange="toggleSection('studentId')">
+                                <span class="text-sm text-gray-700">Use Student ID Number</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded">
+                                <input type="radio" name="verificationMethod" value="academicRecords" class="text-[#1a3d2c]" onchange="toggleSection('academicRecords')">
+                                <span class="text-sm text-gray-700">Use Academic Records</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <!-- 2. Academic Record Section -->
-            <section>
+            <section id="academicRecordsSection" class="hidden transition-all duration-500 ease-in-out">
                 <div class="flex items-center gap-4 mb-6">
                     <span class="w-8 h-8 rounded-full bg-[#1a3d2c] text-white flex items-center justify-center font-bold text-sm">2</span>
                     <div>
                         <h3 class="font-bold text-gray-800">Academic Record</h3>
                         <p class="text-xs text-gray-500">Provide your degree program and graduation year for record matching.</p>
+                    </div>
+                </div>
+                  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div>
+                        <label class="text-xs font-semibold text-gray-600 mb-2 block uppercase tracking-wide">First Name <span class="text-red-500">*</span></label>
+                        <input type="text" placeholder="JUAN" class="w-full bg-white border border-gray-200 p-4 rounded-lg focus:ring-2 focus:ring-[#1a3d2c] outline-none transition uppercase">
+                    </div>
+                    <div>
+                        <label class="text-xs font-semibold text-gray-600 mb-2 block uppercase tracking-wide">Middle Name</label>
+                        <input type="text" placeholder="SANTOS" class="w-full bg-white border border-gray-200 p-4 rounded-lg focus:ring-2 focus:ring-[#1a3d2c] outline-none transition uppercase">
+                    </div>
+                    <div>
+                        <label class="text-xs font-semibold text-gray-600 mb-2 block uppercase tracking-wide">Last Name <span class="text-red-500">*</span></label>
+                        <input type="text" placeholder="CRUZ" class="w-full bg-white border border-gray-200 p-4 rounded-lg focus:ring-2 focus:ring-[#1a3d2c] outline-none transition uppercase">
                     </div>
                 </div>
 
@@ -103,6 +136,25 @@
                         <input type="date" class="w-full bg-white border border-gray-200 p-4 rounded-lg focus:ring-2 focus:ring-[#1a3d2c] outline-none">
                     </div>
                 </div>
+                
+                <div class="mt-6">
+                    <p class="text-sm text-gray-600">Forgot your academic records? <span onclick="toggleOptions2()" class="text-[#1a3d2c] font-semibold cursor-pointer underline">See options</span></p>
+                    
+                    <!-- Options Dropdown 2 -->
+                    <div id="optionsDropdown2" class="hidden mt-4 bg-white border border-gray-200 rounded-lg shadow-lg p-4">
+                        <h4 class="font-semibold text-gray-800 mb-3">Choose verification method:</h4>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded">
+                                <input type="radio" name="verificationMethod2" value="academicRecords" class="text-[#1a3d2c]" onchange="toggleSection2('academicRecords')">
+                                <span class="text-sm text-gray-700">Use Academic Records</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded">
+                                <input type="radio" name="verificationMethod2" value="studentId" class="text-[#1a3d2c]" onchange="toggleSection2('studentId')">
+                                <span class="text-sm text-gray-700">Use Student ID Number</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <!-- 3. OTP Verification Placeholder -->
@@ -116,9 +168,9 @@
                     <div>
                         <h3 class="font-bold text-gray-800">OTP Verification</h3>
                         <p class="text-sm text-gray-500 mb-4">A one-time passcode will be sent to your registered contact for additional security.</p>
-                        <button type="button" class="border border-[#1a3d2c] text-[#1a3d2c] px-6 py-2 rounded-full text-xs font-bold flex items-center gap-2 hover:bg-[#1a3d2c] hover:text-white transition">
+                        <button type="button" onclick="openOTPModal()" class="border border-[#1a3d2c] text-[#1a3d2c] px-6 py-2 rounded-full text-xs font-bold flex items-center gap-2 hover:bg-[#1a3d2c] hover:text-white transition">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9 18-9 18 9-2zm0 0v-8" />
                             </svg>
                             Request OTP
                         </button>
@@ -149,10 +201,239 @@
 
         <!-- Footer -->
         <footer class="mt-24 pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between text-[10px] text-gray-400 font-medium uppercase tracking-widest">
-            <span>© 2026 GradConnect — ISU Ilagan Campus. All rights reserved.</span>
+            <span> 2026 GradConnect — ISU Ilagan Campus. All rights reserved.</span>
             <span>osas@isu-ilagan.edu.ph</span>
         </footer>
     </main>
+    
+    <!-- OTP Modal -->
+    <div id="otpModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-8 relative">
+            <!-- Close Button -->
+            <button onclick="closeOTPModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            
+            <!-- Modal Content -->
+            <div id="modalStep1">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 bg-[#1a3d2c]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#1a3d2c]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Choose OTP Delivery Method</h3>
+                    <p class="text-sm text-gray-600">Select how you want to receive your verification code</p>
+                </div>
+                
+                <div class="space-y-3">
+                    <button onclick="selectOTPMethod('email')" class="w-full p-4 border border-gray-200 rounded-lg hover:border-[#1a3d2c] hover:bg-[#1a3d2c]/5 transition text-left">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Email</h4>
+                                <p class="text-sm text-gray-600">Send code to your email address</p>
+                            </div>
+                        </div>
+                    </button>
+                    
+                    <button onclick="selectOTPMethod('sms')" class="w-full p-4 border border-gray-200 rounded-lg hover:border-[#1a3d2c] hover:bg-[#1a3d2c]/5 transition text-left">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">SMS</h4>
+                                <p class="text-sm text-gray-600">Send code to your mobile number</p>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Step 2: OTP Input -->
+            <div id="modalStep2" class="hidden">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Enter Verification Code</h3>
+                    <p class="text-sm text-gray-600 mb-4">We've sent a 6-digit code to <span id="maskedContact" class="font-semibold"></span></p>
+                </div>
+                
+                <div class="mb-6">
+                    <div class="flex justify-center gap-2 mb-4">
+                        <input type="text" maxlength="1" class="w-12 h-12 text-center border border-gray-300 rounded-lg text-xl font-semibold focus:border-[#1a3d2c] focus:outline-none" onkeyup="moveToNext(this, 0)">
+                        <input type="text" maxlength="1" class="w-12 h-12 text-center border border-gray-300 rounded-lg text-xl font-semibold focus:border-[#1a3d2c] focus:outline-none" onkeyup="moveToNext(this, 1)">
+                        <input type="text" maxlength="1" class="w-12 h-12 text-center border border-gray-300 rounded-lg text-xl font-semibold focus:border-[#1a3d2c] focus:outline-none" onkeyup="moveToNext(this, 2)">
+                        <input type="text" maxlength="1" class="w-12 h-12 text-center border border-gray-300 rounded-lg text-xl font-semibold focus:border-[#1a3d2c] focus:outline-none" onkeyup="moveToNext(this, 3)">
+                        <input type="text" maxlength="1" class="w-12 h-12 text-center border border-gray-300 rounded-lg text-xl font-semibold focus:border-[#1a3d2c] focus:outline-none" onkeyup="moveToNext(this, 4)">
+                        <input type="text" maxlength="1" class="w-12 h-12 text-center border border-gray-300 rounded-lg text-xl font-semibold focus:border-[#1a3d2c] focus:outline-none" onkeyup="moveToNext(this, 5)">
+                    </div>
+                    <p class="text-center text-sm text-gray-600">
+                        Didn't receive the code? <button onclick="resendOTP()" class="text-[#1a3d2c] font-semibold hover:underline">Resend</button>
+                    </p>
+                </div>
+                
+                <div class="flex gap-3">
+                    <button onclick="backToStep1()" class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition">
+                        Back
+                    </button>
+                    <button onclick="verifyOTP()" class="flex-1 px-4 py-2 bg-[#1a3d2c] text-white rounded-lg hover:bg-[#143023] transition">
+                        Verify
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleOptions2() {
+            const dropdown = document.getElementById('optionsDropdown2');
+            dropdown.classList.toggle('hidden');
+        }
+        
+        function toggleSection2(method) {
+            const personalSection = document.getElementById('personalIdentitySection');
+            const academicSection = document.getElementById('academicRecordsSection');
+            
+            if (method === 'studentId') {
+                // Hide Academic Records, Show Personal Identity with smooth transition
+                academicSection.classList.add('opacity-0');
+                setTimeout(() => {
+                    academicSection.classList.add('hidden');
+                    personalSection.classList.remove('hidden', 'opacity-0', 'pointer-events-none', 'max-h-0', 'overflow-hidden', 'py-0');
+                    personalSection.classList.add('opacity-100');
+                }, 300);
+            } else {
+                // Show Academic Records, Hide Personal Identity with smooth transition
+                personalSection.classList.add('opacity-0', 'pointer-events-none', 'max-h-0', 'overflow-hidden', 'py-0');
+                setTimeout(() => {
+                    personalSection.classList.add('hidden');
+                    academicSection.classList.remove('hidden');
+                    setTimeout(() => {
+                        academicSection.classList.remove('opacity-0');
+                        academicSection.classList.add('opacity-100');
+                    }, 50);
+                }, 300);
+            }
+            
+            // Hide dropdown after selection
+            document.getElementById('optionsDropdown2').classList.add('hidden');
+        }
+        
+        // OTP Modal Functions
+        function openOTPModal() {
+            document.getElementById('otpModal').classList.remove('hidden');
+            document.getElementById('modalStep1').classList.remove('hidden');
+            document.getElementById('modalStep2').classList.add('hidden');
+        }
+        
+        function closeOTPModal() {
+            document.getElementById('otpModal').classList.add('hidden');
+        }
+        
+        function selectOTPMethod(method) {
+            const maskedContact = document.getElementById('maskedContact');
+            
+            if (method === 'email') {
+                maskedContact.textContent = 'r****@gmail.com';
+            } else {
+                maskedContact.textContent = '09******';
+            }
+            
+            // Switch to step 2
+            document.getElementById('modalStep1').classList.add('hidden');
+            document.getElementById('modalStep2').classList.remove('hidden');
+        }
+        
+        function backToStep1() {
+            document.getElementById('modalStep2').classList.add('hidden');
+            document.getElementById('modalStep1').classList.remove('hidden');
+        }
+        
+        function moveToNext(input, index) {
+            if (input.value.length === 1) {
+                const inputs = input.parentElement.querySelectorAll('input');
+                if (index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            }
+        }
+        
+        function resendOTP() {
+            // Simulate resending OTP
+            alert('OTP has been resent!');
+        }
+        
+        function verifyOTP() {
+            // Get all OTP inputs
+            const inputs = document.querySelectorAll('#modalStep2 input[type="text"]');
+            let otp = '';
+            inputs.forEach(input => otp += input.value);
+            
+            if (otp.length === 6) {
+                alert('OTP Verified Successfully!');
+                closeOTPModal();
+            } else {
+                alert('Please enter all 6 digits');
+            }
+        }
+        
+        function toggleOptions() {
+            const dropdown = document.getElementById('optionsDropdown');
+            dropdown.classList.toggle('hidden');
+        }
+        
+        function toggleSection(method) {
+            const personalSection = document.getElementById('personalIdentitySection');
+            const academicSection = document.getElementById('academicRecordsSection');
+            
+            if (method === 'academicRecords') {
+                // Hide Personal Identity, Show Academic Records with smooth transition
+                personalSection.classList.add('opacity-0', 'pointer-events-none', 'max-h-0', 'overflow-hidden', 'py-0');
+                setTimeout(() => {
+                    personalSection.classList.add('hidden');
+                    academicSection.classList.remove('hidden');
+                    setTimeout(() => {
+                        academicSection.classList.remove('opacity-0');
+                        academicSection.classList.add('opacity-100');
+                    }, 50);
+                }, 300);
+            } else {
+                // Show Personal Identity, Hide Academic Records with smooth transition
+                academicSection.classList.add('opacity-0');
+                setTimeout(() => {
+                    academicSection.classList.add('hidden');
+                    personalSection.classList.remove('hidden', 'opacity-0', 'pointer-events-none', 'max-h-0', 'overflow-hidden', 'py-0');
+                    personalSection.classList.add('opacity-100');
+                }, 300);
+            }
+            
+            // Hide dropdown after selection
+            document.getElementById('optionsDropdown').classList.add('hidden');
+        }
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('optionsDropdown');
+            const optionsLink = event.target.closest('span[onclick="toggleOptions()"]');
+            
+            if (!dropdown.contains(event.target) && !optionsLink) {
+                dropdown.classList.add('hidden');
+            }
+        });
+    </script>
 </div>
 </body>
 </html>
