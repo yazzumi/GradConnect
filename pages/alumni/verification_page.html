@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../output.css">
+    <link rel="icon" href="../../assets/images/isu-logo.png">
+    <title>Verification</title>
+</head>
+<body>
+    <!-- Main Container -->
+<div class="flex min-h-screen bg-[#fcfaf2] font-sans">
+    
+    <!-- Left Sidebar: Deep Green Aesthetic -->
+    <aside class="hidden md:flex w-[400px] bg-[#1a3d2c] p-16 flex-col justify-between relative overflow-hidden text-white">
+        <!-- Subtle Dot Pattern Overlay -->
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#fff 1px, transparent 0); background-size: 20px 20px;"></div>
+        
+        <div class="relative z-10">
+            <h2 class="text-[#d9a54a] font-bold text-xs uppercase tracking-[0.3em] mb-8">GradConnect • Secure Portal</h2>
+            <h1 class="text-6xl font-serif italic leading-tight mb-6">Identity<br>Verification</h1>
+            <p class="text-gray-300 text-lg leading-relaxed max-w-xs">
+                Verify your alumni records to access the ISU Ilagan Campus Alumni Tracer Survey.
+            </p>
+            <div class="mt-8 inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 text-xs font-medium text-gray-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#d9a54a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+                AY 2020 – 2025 Alumni Only
+            </div>
+        </div>
+
+        <div class="relative z-10">
+            <div class="w-12 h-1 bg-[#d9a54a] mb-6"></div>
+            <p class="text-xs text-gray-400 font-medium leading-loose uppercase tracking-widest">
+                Isabela State University — Ilagan Campus<br>
+                Office of Student Affairs and Services (OSAS)
+            </p>
+        </div>
+    </aside>
+
+    <!-- Right Content Area: Verification Form -->
+    <main class="flex-1 p-8 md:p-24 flex flex-col justify-center max-w-4xl mx-auto">
+        <form action="" method="POST" class="space-y-12">
+            
+            <!-- 1. Personal Identity Section -->
+            <section>
+                <div class="flex items-center gap-4 mb-6">
+                    <span class="w-8 h-8 rounded-full bg-[#1a3d2c] text-white flex items-center justify-center font-bold text-sm">1</span>
+                    <div>
+                        <h3 class="font-bold text-gray-800">Personal Identity</h3>
+                        <p class="text-xs text-gray-500">Enter your name exactly as it appears on your official ISU records.</p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div>
+                        <label class="text-xs font-semibold text-gray-600 mb-2 block uppercase tracking-wide">First Name <span class="text-red-500">*</span></label>
+                        <input type="text" placeholder="JUAN" class="w-full bg-white border border-gray-200 p-4 rounded-lg focus:ring-2 focus:ring-[#1a3d2c] outline-none transition uppercase">
+                    </div>
+                    <div>
+                        <label class="text-xs font-semibold text-gray-600 mb-2 block uppercase tracking-wide">Middle Name</label>
+                        <input type="text" placeholder="SANTOS" class="w-full bg-white border border-gray-200 p-4 rounded-lg focus:ring-2 focus:ring-[#1a3d2c] outline-none transition uppercase">
+                    </div>
+                    <div>
+                        <label class="text-xs font-semibold text-gray-600 mb-2 block uppercase tracking-wide">Last Name <span class="text-red-500">*</span></label>
+                        <input type="text" placeholder="CRUZ" class="w-full bg-white border border-gray-200 p-4 rounded-lg focus:ring-2 focus:ring-[#1a3d2c] outline-none transition uppercase">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="text-xs font-semibold text-gray-600 mb-2 block uppercase tracking-wide">Student ID Number <span class="text-red-500">*</span></label>
+                    <input type="text" placeholder="2021-01234" class="w-full bg-white border border-gray-200 p-4 rounded-lg focus:ring-2 focus:ring-[#1a3d2c] outline-none transition">
+                </div>
+            </section>
+
+            <!-- 2. Academic Record Section -->
+            <section>
+                <div class="flex items-center gap-4 mb-6">
+                    <span class="w-8 h-8 rounded-full bg-[#1a3d2c] text-white flex items-center justify-center font-bold text-sm">2</span>
+                    <div>
+                        <h3 class="font-bold text-gray-800">Academic Record</h3>
+                        <p class="text-xs text-gray-500">Provide your degree program and graduation year for record matching.</p>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="text-xs font-semibold text-gray-600 mb-2 block uppercase tracking-wide">Degree Program <span class="text-red-500">*</span></label>
+                    <select class="w-full bg-white border border-gray-200 p-4 rounded-lg focus:ring-2 focus:ring-[#1a3d2c] outline-none appearance-none cursor-pointer">
+                        <option>Select your program</option>
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="text-xs font-semibold text-gray-600 mb-2 block uppercase tracking-wide">Year Graduated <span class="text-red-500">*</span></label>
+                        <select class="w-full bg-white border border-gray-200 p-4 rounded-lg focus:ring-2 focus:ring-[#1a3d2c] outline-none cursor-pointer">
+                            <option>Select year</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-xs font-semibold text-gray-600 mb-2 block uppercase tracking-wide">Date of Birth <span class="text-red-500">*</span></label>
+                        <input type="date" class="w-full bg-white border border-gray-200 p-4 rounded-lg focus:ring-2 focus:ring-[#1a3d2c] outline-none">
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. OTP Verification Placeholder -->
+            <section class="bg-white border border-gray-100 p-8 rounded-2xl shadow-sm">
+                <div class="flex items-start gap-4">
+                    <div class="p-3 bg-green-50 text-[#1a3d2c] rounded-xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800">OTP Verification</h3>
+                        <p class="text-sm text-gray-500 mb-4">A one-time passcode will be sent to your registered contact for additional security.</p>
+                        <button type="button" class="border border-[#1a3d2c] text-[#1a3d2c] px-6 py-2 rounded-full text-xs font-bold flex items-center gap-2 hover:bg-[#1a3d2c] hover:text-white transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                            </svg>
+                            Request OTP
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Privacy Note -->
+            <div class="bg-[#f3f4f0] p-6 rounded-xl flex items-start gap-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#1a3d2c] opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+                <p class="text-[10px] text-gray-600 leading-relaxed uppercase tracking-wider">
+                    Your information is used solely for alumni verification and institutional tracking. All records are handled securely per the Data Privacy Act of 2012 (RA 10173).
+                </p>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="flex justify-end">
+                <button type="submit" class="bg-[#1a3d2c] hover:bg-[#143023] text-white px-10 py-4 rounded-full font-bold shadow-lg flex items-center gap-3 transition transform hover:scale-105">
+                    Verify Alumni
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                </button>
+            </div>
+        </form>
+
+        <!-- Footer -->
+        <footer class="mt-24 pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between text-[10px] text-gray-400 font-medium uppercase tracking-widest">
+            <span>© 2026 GradConnect — ISU Ilagan Campus. All rights reserved.</span>
+            <span>osas@isu-ilagan.edu.ph</span>
+        </footer>
+    </main>
+</div>
+</body>
+</html>
