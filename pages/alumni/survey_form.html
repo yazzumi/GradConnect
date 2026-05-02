@@ -3,178 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Professional Alumni Survey</title>
+    <link rel="stylesheet" href="../../output.css">
+    <link rel="icon" href="../../assets/images/isu-logo.png" type="image/png">
+    <title>GradConnect | Professional Alumni Tracer</title>
     <style>
-        .stage-transition {
-            animation: slideUp 0.4s ease-out forwards;
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+
+        .bg-pattern {
+            background-color: #fcfaf2;
+            background-image: radial-gradient(#1a3d2c15 1px, transparent 1px);
+            background-size: 30px 30px;
         }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        /* Logic for Gray-to-Color transition */
+        .status-card {
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        /* Custom scrollbar for the form area */
-        .custom-scroll::-webkit-scrollbar { width: 6px; }
-        .custom-scroll::-webkit-scrollbar-track { background: #fcfaf2; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 10px; }
+
+        input:checked + .status-card {
+            filter: grayscale(0%);
+            opacity: 1;
+            border-color: #1a3d2c;
+            background-color: white;
+            transform: translateY(-2px);
+        }
+
+        .unfold-animation {
+            animation: unfold 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transform-origin: top;
+        }
+
+        @keyframes unfold {
+            from { opacity: 0; transform: scaleY(0.95); }
+            to { opacity: 1; transform: scaleY(1); }
+        }
+
+        .custom-scroll::-webkit-scrollbar { width: 5px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #1a3d2c20; border-radius: 10px; }
     </style>
 </head>
-<body class="bg-[#fcfaf2] font-sans h-screen flex flex-col overflow-hidden">
+<body class="bg-pattern h-screen flex overflow-hidden">
 
-    <!-- 1. Header (Fixed) -->
-    <header class="w-full bg-white border-b border-gray-100 px-8 py-4 flex items-center justify-between shrink-0 z-30">
-        <div class="flex items-center gap-3">
-            <img src="../../assets/images/isu-logo.png" alt="Logo" class="h-8 w-8">
-            <h1 class="font-serif font-bold text-[#1a3d2c] text-lg">GradConnect</h1>
-        </div>
+    <!-- 1. SIDE HEADER -->
+    <aside class="w-[380px] bg-[#1a3d2c] h-full p-12 flex flex-col justify-between relative overflow-hidden shrink-0 shadow-2xl">
+        <div class="absolute -top-20 -left-20 w-64 h-64 bg-[#d9a54a]/10 rounded-full blur-3xl"></div>
+        
+        <div class="relative z-10">
+            <div class="flex items-center gap-3 mb-16">
+                <div class="p-2 bg-white/10 rounded-lg backdrop-blur-md">
+                    <img src="../../assets/images/isu-logo.png" alt="ISU" class="h-8 w-8 brightness-0 invert">
+                </div>
+                <span class="text-white font-black tracking-tighter text-xl">GradConnect</span>
+            </div>
 
-    </header>
-
-    <!-- 2. Progress Pipeline (Fixed) -->
-    <section class="w-full bg-[#1a3d2c] pt-8 pb-12 px-8 shrink-0 shadow-lg relative z-20">
-        <div class="max-w-4xl mx-auto relative">
-            <div class="absolute top-5 left-0 w-full h-1 bg-white/10 rounded-full"></div>
-            <div id="progress-line" class="absolute top-5 left-0 h-1 bg-[#d9a54a] rounded-full transition-all duration-700 ease-in-out" style="width: 0%;"></div>
-
-            <div class="relative flex justify-between">
-                <!-- Step 1 -->
-                <div class="flex flex-col items-center gap-3">
-                    <div id="circle-1" class="w-10 h-10 rounded-full bg-white border-4 border-[#d9a54a] flex items-center justify-center text-[#1a3d2c] font-black z-10 transition-all duration-500 shadow-xl">1</div>
-                    <span id="label-1" class="absolute -bottom-8 text-[10px] font-bold uppercase tracking-widest text-white">Status</span>
-                </div>
-                <!-- Step 2 -->
-                <div class="flex flex-col items-center gap-3">
-                    <div id="circle-2" class="w-10 h-10 rounded-full bg-[#1a3d2c] border-4 border-white/10 flex items-center justify-center text-white/40 font-black z-10 transition-all duration-500">2</div>
-                    <span id="label-2" class="absolute -bottom-8 text-[10px] font-bold uppercase tracking-widest text-white/30">Profile</span>
-                </div>
-                <!-- Step 3 -->
-                <div class="flex flex-col items-center gap-3">
-                    <div id="circle-3" class="w-10 h-10 rounded-full bg-[#1a3d2c] border-4 border-white/10 flex items-center justify-center text-white/40 font-black z-10 transition-all duration-500">3</div>
-                    <span id="label-3" class="absolute -bottom-8 text-[10px] font-bold uppercase tracking-widest text-white/30">Alignment</span>
-                </div>
-                <!-- Step 4 -->
-                <div class="flex flex-col items-center gap-3">
-                    <div id="circle-4" class="w-10 h-10 rounded-full bg-[#1a3d2c] border-4 border-white/10 flex items-center justify-center text-white/40 font-black z-10 transition-all duration-500">4</div>
-                    <span id="label-4" class="absolute -bottom-8 text-[10px] font-bold uppercase tracking-widest text-white/30">Skills</span>
-                </div>
-                <!-- Step 5 -->
-                <div class="flex flex-col items-center gap-3">
-                    <div id="circle-5" class="w-10 h-10 rounded-full bg-[#1a3d2c] border-4 border-white/10 flex items-center justify-center text-white/40 font-black z-10 transition-all duration-500">5</div>
-                    <span id="label-5" class="absolute -bottom-8 text-[10px] font-bold uppercase tracking-widest text-white/30">Feedback</span>
-                </div>
+            <div class="space-y-6">
+                <span class="text-[#d9a54a] text-[10px] font-black uppercase tracking-[0.4em]">Alumni Tracer 2026</span>
+                <h1 class="text-5xl font-serif text-white leading-tight">Career &<br><i class="font-serif italic text-[#d9a54a]">Employment</i></h1>
+                <p class="text-white/60 text-sm leading-relaxed max-w-[280px]">
+                    Help ISU Ilagan Campus understand where our graduates are now. Your data is encrypted and used for institutional planning.
+                </p>
             </div>
         </div>
-    </section>
 
-    <!-- 3. Form Content (Scrollable) -->
+        <div class="relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/10 backdrop-blur-sm">
+                <div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+                <span class="text-[10px] font-bold text-white uppercase tracking-widest">Confidential & Secure</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 2. MAIN SURVEY CONTENT -->
     <main class="flex-grow overflow-y-auto custom-scroll relative">
-        <div class="max-w-2xl mx-auto py-12 px-6">
-            <form id="surveyForm" class="pb-10">
-                <!-- Stage 1 -->
-                <div class="survey-stage stage-transition" id="stage1">
-                    <h2 class="text-3xl font-serif italic text-[#1a3d2c] mb-2">Employment Status</h2>
-                    <p class="text-gray-500 mb-8 text-sm">Choose your current professional status.</p>
-                    <div class="space-y-3">
-                        <label class="group block cursor-pointer">
-                            <input type="radio" name="job_status" class="hidden peer">
-                            <div class="p-5 bg-white border border-gray-200 rounded-xl peer-checked:border-[#1a3d2c] peer-checked:bg-[#f3f4f0] hover:border-gray-300 transition-all font-medium text-[#1a3d2c] flex justify-between items-center">
-                                Employed Full-Time
-                                <div class="w-5 h-5 rounded-full border-2 border-gray-200 peer-checked:border-[#1a3d2c] flex items-center justify-center">
-                                    <div class="w-2.5 h-2.5 rounded-full bg-[#1a3d2c] scale-0 peer-checked:scale-100 transition-transform"></div>
+        <div class="max-w-5xl mx-auto py-20 px-12">
+            
+            <!-- Progress Bar -->
+            <div class="mb-16">
+                <div class="flex justify-between items-end mb-4">
+                    <h3 class="font-bold text-[#1a3d2c] text-lg">Survey Progress</h3>
+                    <span id="progressPercent" class="text-[10px] font-black text-[#d9a54a] uppercase tracking-widest">0% Complete</span>
+                </div>
+                <div class="h-1.5 w-full bg-gray-200 rounded-full overflow-hidden">
+                    <div id="progressBar" class="h-full bg-[#1a3d2c] w-0 transition-all duration-700 ease-out"></div>
+                </div>
+            </div>
+
+            <form id="surveyForm" class="space-y-12">
+                
+                <!-- STEP 1: Employment Status -->
+                <section>
+                    <div class="flex items-center gap-4 mb-8">
+                        <span class="flex items-center justify-center w-8 h-8 rounded-full bg-[#1a3d2c] text-white text-[10px] font-black">01</span>
+                        <h2 class="text-xl font-bold text-[#1a3d2c]">Employment Status</h2>
+                    </div>
+
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                        <!-- Employed -->
+                        <label class="cursor-pointer group">
+                            <input type="radio" name="emp_status" value="employed" class="hidden" onclick="toggleDetails('employed')">
+                            <div class="status-card p-6 rounded-2xl border-2 border-white bg-white/40 backdrop-blur-md shadow-sm group-hover:shadow-md h-full">
+                                <div class="w-10 h-10 bg-white rounded-xl mb-4 flex items-center justify-center shadow-sm">
+                                    <svg class="w-5 h-5 text-[#1a3d2c]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                                 </div>
+                                <h4 class="font-bold text-[#1a3d2c] text-sm">Employed</h4>
+                                <p class="text-[9px] text-gray-500 mt-1 uppercase tracking-tighter leading-tight">Working for a company or organization</p>
                             </div>
                         </label>
-                        <!-- Add more options here... -->
+
+                        <!-- Self-Employed -->
+                        <label class="cursor-pointer group">
+                            <input type="radio" name="emp_status" value="self" class="hidden" onclick="toggleDetails('self')">
+                            <div class="status-card p-6 rounded-2xl border-2 border-white bg-white/40 backdrop-blur-md shadow-sm group-hover:shadow-md h-full">
+                                <div class="w-10 h-10 bg-white rounded-xl mb-4 flex items-center justify-center shadow-sm">
+                                    <svg class="w-5 h-5 text-[#1a3d2c]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                </div>
+                                <h4 class="font-bold text-[#1a3d2c] text-sm">Self-Employed</h4>
+                                <p class="text-[9px] text-gray-500 mt-1 uppercase tracking-tighter leading-tight">Running your own business or freelance</p>
+                            </div>
+                        </label>
+
+                        <!-- OFW -->
+                        <label class="cursor-pointer group">
+                            <input type="radio" name="emp_status" value="ofw" class="hidden" onclick="toggleDetails('ofw')">
+                            <div class="status-card p-6 rounded-2xl border-2 border-white bg-white/40 backdrop-blur-md shadow-sm group-hover:shadow-md h-full">
+                                <div class="w-10 h-10 bg-white rounded-xl mb-4 flex items-center justify-center shadow-sm">
+                                    <svg class="w-5 h-5 text-[#1a3d2c]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                </div>
+                                <h4 class="font-bold text-[#1a3d2c] text-sm">OFW</h4>
+                                <p class="text-[9px] text-gray-500 mt-1 uppercase tracking-tighter leading-tight">Working overseas as a Filipino worker</p>
+                            </div>
+                        </label>
+
+                        <!-- Unemployed -->
+                        <label class="cursor-pointer group">
+                            <input type="radio" name="emp_status" value="unemployed" class="hidden" onclick="toggleDetails('unemployed')">
+                            <div class="status-card p-6 rounded-2xl border-2 border-white bg-white/40 backdrop-blur-md shadow-sm group-hover:shadow-md h-full">
+                                <div class="w-10 h-10 bg-white rounded-xl mb-4 flex items-center justify-center shadow-sm">
+                                    <svg class="w-5 h-5 text-[#1a3d2c]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                </div>
+                                <h4 class="font-bold text-[#1a3d2c] text-sm">Unemployed</h4>
+                                <p class="text-[9px] text-gray-500 mt-1 uppercase tracking-tighter leading-tight">Currently not working or seeking work</p>
+                            </div>
+                        </label>
                     </div>
+                </section>
+
+                <!-- STEP 2: Employment Details (Conditional) -->
+                <section id="employmentDetails" class="hidden unfold-animation">
+                    <div class="flex items-center gap-4 mb-8">
+                        <span class="flex items-center justify-center w-8 h-8 rounded-full bg-[#1a3d2c] text-white text-[10px] font-black">02</span>
+                        <h2 id="detailsTitle" class="text-xl font-bold text-[#1a3d2c]">Employment Details</h2>
+                    </div>
+
+                    <div id="formGrid" class="grid grid-cols-2 gap-6 bg-white/40 p-8 rounded-[2rem] border border-white shadow-inner">
+                        <!-- Dynamic inputs injected by JS -->
+                    </div>
+                </section>
+
+                <div class="pt-10 flex justify-end">
+                    <button type="submit" class="bg-[#1a3d2c] text-white px-16 py-5 rounded-2xl font-bold text-sm shadow-2xl hover:bg-[#143023] transition transform hover:scale-105 active:scale-95">
+                        Submit Records
+                    </button>
                 </div>
 
-                <!-- Stages 2-5 (Hidden initially) -->
-                <div class="survey-stage hidden stage-transition" id="stage2">
-                    <h2 class="text-3xl font-serif italic text-[#1a3d2c] mb-2">Profile Details</h2>
-                    <input type="text" placeholder="Current Job Title" class="w-full p-4 rounded-xl border border-gray-200 outline-none focus:border-[#1a3d2c] focus:ring-4 focus:ring-[#1a3d2c]/5 mb-4">
-                    <input type="text" placeholder="Company Name" class="w-full p-4 rounded-xl border border-gray-200 outline-none focus:border-[#1a3d2c] focus:ring-4 focus:ring-[#1a3d2c]/5">
-                </div>
-                <!-- ... other stages ... -->
             </form>
         </div>
     </main>
 
-    <!-- 4. Navigation Footer (Sticky Bottom) -->
-    <footer class="w-full bg-white border-t border-gray-200 p-6 shrink-0 z-30">
-        <div class="max-w-4xl mx-auto flex justify-between items-center">
-            <button type="button" id="backBtn" class="invisible flex items-center gap-2 px-8 py-3 rounded-xl border-2 border-gray-100 text-gray-500 font-bold text-xs uppercase tracking-widest hover:border-[#1a3d2c] hover:text-[#1a3d2c] hover:bg-[#1a3d2c]/5 transition-all">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-                Previous
-            </button>
-            
-            <div class="flex items-center gap-4">
-                <span class="hidden md:block text-[10px] font-bold text-gray-400 uppercase tracking-widest">Progress Saved</span>
-                <button type="button" id="nextBtn" class="bg-[#1a3d2c] text-white px-12 py-4 rounded-xl font-bold text-sm shadow-xl hover:bg-[#143023] transition transform active:scale-95 flex items-center gap-2">
-                    <span id="btnText">Continue</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-                </button>
-            </div>
-        </div>
-    </footer>
-
     <script>
-        let currentStage = 1;
-        const totalStages = 5;
+        function toggleDetails(status) {
+            const detailsSection = document.getElementById('employmentDetails');
+            const formGrid = document.getElementById('formGrid');
+            const detailsTitle = document.getElementById('detailsTitle');
+            const progressPercent = document.getElementById('progressPercent');
+            const progressBar = document.getElementById('progressBar');
 
-        const nextBtn = document.getElementById('nextBtn');
-        const backBtn = document.getElementById('backBtn');
-        const btnText = document.getElementById('btnText');
-        const progressLine = document.getElementById('progress-line');
-
-        function updateUI() {
-            // Update stages
-            document.querySelectorAll('.survey-stage').forEach((stage, idx) => {
-                stage.classList.toggle('hidden', idx + 1 !== currentStage);
-            });
-
-            // Update Progress Line
-            const progressPercent = ((currentStage - 1) / (totalStages - 1)) * 100;
-            progressLine.style.width = `${progressPercent}%`;
-
-            // Update Pipeline Nodes
-            for (let i = 1; i <= totalStages; i++) {
-                const circle = document.getElementById(`circle-${i}`);
-                const label = document.getElementById(`label-${i}`);
-                
-                if (i < currentStage) {
-                    circle.innerHTML = "✓";
-                    circle.className = "w-10 h-10 rounded-full bg-[#d9a54a] border-4 border-[#1a3d2c] flex items-center justify-center text-[#1a3d2c] font-black z-10 transition-all duration-500";
-                    label.className = "absolute -bottom-8 text-[10px] font-bold uppercase tracking-widest text-[#d9a54a]";
-                } else if (i === currentStage) {
-                    circle.innerHTML = i;
-                    circle.className = "w-10 h-10 rounded-full bg-white border-4 border-[#d9a54a] flex items-center justify-center text-[#1a3d2c] font-black z-10 transition-all duration-500 scale-110 shadow-xl";
-                    label.className = "absolute -bottom-8 text-[10px] font-bold uppercase tracking-widest text-white";
-                } else {
-                    circle.innerHTML = i;
-                    circle.className = "w-10 h-10 rounded-full bg-[#1a3d2c] border-4 border-white/10 flex items-center justify-center text-white/40 font-black z-10 transition-all duration-500";
-                    label.className = "absolute -bottom-8 text-[10px] font-bold uppercase tracking-widest text-white/30";
-                }
+            detailsSection.classList.remove('hidden');
+            
+            if (status === 'unemployed') {
+                progressPercent.innerText = "100% Complete";
+                progressBar.style.width = "100%";
+                detailsTitle.innerText = "Reason for Status";
+                formGrid.innerHTML = `
+                    <div class="col-span-2">
+                        <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">Primary Reason</label>
+                        <select class="w-full p-4 bg-white rounded-xl border border-gray-100 outline-none focus:ring-2 focus:ring-[#1a3d2c] text-sm shadow-sm appearance-none">
+                            <option>Continuing Studies</option>
+                            <option>Family Concerns</option>
+                            <option>Health Reasons</option>
+                            <option>Lack of Opportunity</option>
+                        </select>
+                    </div>`;
+            } else {
+                progressPercent.innerText = "60% Complete";
+                progressBar.style.width = "60%";
+                detailsTitle.innerText = "Work Information";
+                formGrid.innerHTML = `
+                    <div class="col-span-1">
+                        <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">${status === 'self' ? 'Business Name' : 'Company Name'}</label>
+                        <input type="text" placeholder="..." class="w-full p-4 bg-white rounded-xl border border-gray-100 outline-none focus:ring-2 focus:ring-[#1a3d2c] text-sm shadow-sm">
+                    </div>
+                    <div class="col-span-1">
+                        <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">Position / Job Title</label>
+                        <input type="text" placeholder="..." class="w-full p-4 bg-white rounded-xl border border-gray-100 outline-none focus:ring-2 focus:ring-[#1a3d2c] text-sm shadow-sm">
+                    </div>
+                    <div class="col-span-1">
+                        <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">Industry Sector</label>
+                        <select class="w-full p-4 bg-white rounded-xl border border-gray-100 outline-none focus:ring-2 focus:ring-[#1a3d2c] text-sm shadow-sm">
+                            <option>IT / Tech</option>
+                            <option>Accounting / Finance</option>
+                            <option>Education</option>
+                        </select>
+                    </div>
+                    <div class="col-span-1">
+                        <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">Monthly Salary Range</label>
+                        <select class="w-full p-4 bg-white rounded-xl border border-gray-100 outline-none focus:ring-2 focus:ring-[#1a3d2c] text-sm shadow-sm">
+                            <option>PHP 20,000 - 40,000</option>
+                            <option>PHP 40,000 - 60,000</option>
+                        </select>
+                    </div>`;
             }
-
-            backBtn.style.visibility = (currentStage === 1) ? 'hidden' : 'visible';
-            btnText.innerText = (currentStage === totalStages) ? 'Submit Records' : 'Continue';
         }
-
-        nextBtn.addEventListener('click', () => {
-            if (currentStage < totalStages) {
-                currentStage++;
-                updateUI();
-                document.querySelector('main').scrollTop = 0; // Reset scroll on next
-            }
-        });
-
-        backBtn.addEventListener('click', () => {
-            if (currentStage > 1) {
-                currentStage--;
-                updateUI();
-                document.querySelector('main').scrollTop = 0; // Reset scroll on back
-            }
-        });
     </script>
 </body>
 </html>
