@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class SurveyQuestion extends Model
 {
+    protected $table = 'survey_questions';
+
     protected $primaryKey = 'question_id';
 
     public $timestamps = false;

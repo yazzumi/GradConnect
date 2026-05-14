@@ -1,86 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite('resources/css/app.css')
-    <link rel="icon" href="{{asset('assets/images/isu-logo.png')}}" type="image">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <title>Employment Data | GradConnect</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f3f5f4; }
-
-    </style>
-</head>
-<body class="antialiased text-[#1a2e1a]">
+@extends('admin.shared.layout')
+@section('title', 'Employment Data')
+@section('content')
 
 <div class="flex min-h-screen">
-    <aside class="w-64 bg-white border-r border-gray-100 flex flex-col sticky top-0 h-screen">
-        <!-- Logo Section with ISU Theme Colors -->
-        <div class="p-6 flex items-center gap-3 border-b border-gray-50">
-            <img src="{{asset('assets/images/isu-logo.png')}}" alt="Logo" class="w-10 h-10 object-contain">
-            <div class="flex flex-col">
-                <span class="text-base font-extrabold tracking-tight text-[#065f46] leading-none">GradConnect</span>
-                <span class="text-[9px] font-bold text-[#d9a54a] uppercase tracking-tighter">ISU Alumni System</span>
-            </div>
-        </div>
-
-        <nav class="flex-1 px-4 space-y-1 overflow-y-auto pt-4">
-            <!-- Dashboard Link (Standalone) -->
-            <a href="#" class="sidebar-active flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold transition-all mb-4">
-                <i class="fa-solid fa-chart-pie w-4 text-center"></i> Dashboard
-            </a>
-
-            <!-- Alumni Section -->
-            <div class="mb-6">
-                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest px-3 mb-2">Alumni</p>
-                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold text-gray-500 hover:bg-emerald-50 hover:text-[#065f46] transition-all">
-                    <i class="fa-solid fa-address-book w-4 text-center"></i> Graduate Records
-                </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold text-gray-500 hover:bg-emerald-50 hover:text-[#065f46] transition-all">
-                    <i class="fa-solid fa-clipboard-question w-4 text-center"></i> Survey Management
-                </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold text-gray-500 hover:bg-emerald-50 hover:text-[#065f46] transition-all">
-                    <i class="fa-solid fa-briefcase w-4 text-center"></i> Employment Data
-                </a>
-            </div>
-
-            <!-- Request Section -->
-            <div class="mb-6">
-                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest px-3 mb-2">Request</p>
-                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold text-gray-500 hover:bg-emerald-50 hover:text-[#065f46] transition-all">
-                    <i class="fa-solid fa-bell-concierge w-4 text-center"></i> Update Request
-                </a>
-            </div>
-
-            <!-- Reports Section -->
-            <div class="mb-6">
-                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest px-3 mb-2">Reports</p>
-                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold text-gray-500 hover:bg-emerald-50 hover:text-[#065f46] transition-all">
-                    <i class="fa-solid fa-chart-line w-4 text-center"></i> Analytics & Reports
-                </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold text-gray-500 hover:bg-emerald-50 hover:text-[#065f46] transition-all">
-                    <i class="fa-solid fa-shield-halved w-4 text-center"></i> Audit Logs
-                </a>
-            </div>
-
-            <!-- System Section -->
-            <div class="mb-6">
-                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest px-3 mb-2">System</p>
-                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold text-gray-500 hover:bg-emerald-50 hover:text-[#065f46] transition-all">
-                    <i class="fa-solid fa-user-gear w-4 text-center"></i> Admin Accounts
-                </a>
-            </div>
-        </nav>
-
-        <!-- Logout Section -->
-        <div class="p-4 mt-auto border-t border-gray-50 bg-gray-50/50">
-            <button class="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold text-red-600 hover:bg-red-100 transition-all">
-                <i class="fa-solid fa-right-from-bracket w-4 text-center"></i> Logout System
-            </button>
-        </div>
-    </aside>
+    @include('admin.partials.sidebar')
     <main class="flex-1 p-8">
         <header class="flex justify-between items-center mb-8">
             <div>
@@ -119,16 +42,16 @@
         </div>
 
         <!-- EMPLOYMENT TABLE -->
-        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+        <div class="bg-white rounded-md border border-gray-100 shadow-sm overflow-hidden">
             <table class="w-full text-left">
                 <thead>
-                <tr class="bg-gray-50/50 border-b border-gray-100">
-                    <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">Graduate Name</th>
-                    <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">Current Job / Company</th>
-                    <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest text-center">Status</th>
-                    <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest text-center">In-Field</th>
-                    <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest text-center">Proof</th>
-                    <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest text-right">Last Updated</th>
+                <tr class="bg-[#1a3d2c] border-b border-gray-100 text-[10px] font-black text-white uppercase tracking-widest">
+                    <th class="px-6 py-4 ">Graduate Name</th>
+                    <th class="px-6 py-4 ">Current Job / Company</th>
+                    <th class="px-6 py-4 text-center">Status</th>
+                    <th class="px-6 py-4 text-center">In-Field</th>
+                    <th class="px-6 py-4 text-center">Proof</th>
+                    <th class="px-6 py-4 text-right">Last Updated</th>
                 </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-50">
@@ -227,5 +150,4 @@
     </main>
 </div>
 
-</body>
-</html>
+@endsection

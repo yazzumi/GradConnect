@@ -1011,10 +1011,14 @@ namespace App\Models {
     /**
      * App\Models\EmploymentStatus
      *
+     * @property string $status_name
+     * @property int $employment_status_id
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\SurveySession> $surveySessions
      * @property-read int|null $survey_sessions_count
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\SurveyQuestion> $surveyQuestions
      * @property-read int|null $survey_questions_count
+     * @method static \Illuminate\Database\Eloquent\Builder<EmploymentStatus>|EmploymentStatus whereEmploymentStatusId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<EmploymentStatus>|EmploymentStatus whereStatusName($value)
      * @method static \Illuminate\Database\Eloquent\Builder<EmploymentStatus>|EmploymentStatus newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder<EmploymentStatus>|EmploymentStatus newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder<EmploymentStatus>|EmploymentStatus query()
@@ -3025,8 +3029,24 @@ namespace App\Models {
     /**
      * App\Models\User
      *
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property string|null $remember_token
+     * @property string $password
+     * @property \Illuminate\Support\Carbon|null $email_verified_at
+     * @property string $email
+     * @property string $name
+     * @property int $id
      * @property-read \Illuminate\Database\Eloquent\Collection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
      * @property-read int|null $notifications_count
+     * @method static \Illuminate\Database\Eloquent\Builder<User>|User whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<User>|User whereName($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<User>|User whereEmail($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<User>|User whereEmailVerifiedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<User>|User wherePassword($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<User>|User whereRememberToken($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<User>|User whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<User>|User whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder<User>|User newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder<User>|User newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder<User>|User query()
@@ -3675,7 +3695,8 @@ namespace App\Models {
     /**
      * App\Models\graduates
      *
-     * @property string $updated_at
+     * @property string|null $guid
+     * @property string|null $updated_at
      * @property string $created_at
      * @property int|null $civil_status_id
      * @property int $program_id
@@ -3703,6 +3724,7 @@ namespace App\Models {
      * @method static \Illuminate\Database\Eloquent\Builder<graduates>|graduates whereCivilStatusId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<graduates>|graduates whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder<graduates>|graduates whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<graduates>|graduates whereGuid($value)
      * @method static \Illuminate\Database\Eloquent\Builder<graduates>|graduates newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder<graduates>|graduates newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder<graduates>|graduates query()

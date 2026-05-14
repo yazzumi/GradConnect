@@ -1,18 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite('resources/css/app.css')
-    <link rel="icon" href="{{asset('assets/images/isu-logo.png')}}" type="image">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <title>Admin Login | GradConnect</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f4f7f5; }
-    </style>
-</head>
-<body class="antialiased text-[#1a2e1a] bg-gray-50 flex items-center justify-center min-h-screen p-6">
+@extends('admin.shared.layout')
+@section('title', 'Login')
+@section('content')
 
 <!-- LOGIN CARD -->
 
@@ -78,6 +66,4 @@
         <i class="fa-solid fa-shield-halved mr-1"></i> Authorized Personnel Only. Data Encryption Active.
     </div>
 </div>
-
-</body>
-</html>
+@endsection

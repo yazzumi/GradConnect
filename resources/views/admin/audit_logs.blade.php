@@ -1,93 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite('resources/css/app.css')
-    <link rel="icon" href="{{asset('assets/images/isu-logo.png')}}" type="image">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <title>Audit Logs | GradConnect</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f3f5f4; }
+@extends('admin.shared.layout')
 
-        /* Status Pill Variants */
-        .log-create { background-color: #ecfdf5; color: #059669; border: 1px solid #d1fae5; }
-        .log-update { background-color: #eff6ff; color: #2563eb; border: 1px solid #dbeafe; }
-        .log-delete { background-color: #fef2f2; color: #dc2626; border: 1px solid #fee2e2; }
-        .log-access { background-color: #f9fafb; color: #4b5563; border: 1px solid #f3f4f6; }
-    </style>
-</head>
-<body class="antialiased text-[#1a2e1a]">
+@section('title', 'Audit Logs')
+@section('content')
 
 <div class="flex min-h-screen">
-    <aside class="w-64 bg-white border-r border-gray-100 flex flex-col sticky top-0 h-screen">
-        <!-- Logo Section with ISU Theme Colors -->
-        <div class="p-6 flex items-center gap-3 border-b border-gray-50">
-            <img src="{{asset('assets/images/isu-logo.png')}}" alt="Logo" class="w-10 h-10 object-contain">
-            <div class="flex flex-col">
-                <span class="text-base font-extrabold tracking-tight text-[#065f46] leading-none">GradConnect</span>
-                <span class="text-[9px] font-bold text-[#d9a54a] uppercase tracking-tighter">ISU Alumni System</span>
-            </div>
-        </div>
 
-        <nav class="flex-1 px-4 space-y-1 overflow-y-auto pt-4">
-            <!-- Dashboard Link (Standalone) -->
-            <a href="#" class="sidebar-active flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold transition-all mb-4">
-                <i class="fa-solid fa-chart-pie w-4 text-center"></i> Dashboard
-            </a>
-
-            <!-- Alumni Section -->
-            <div class="mb-6">
-                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest px-3 mb-2">Alumni</p>
-                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold text-gray-500 hover:bg-emerald-50 hover:text-[#065f46] transition-all">
-                    <i class="fa-solid fa-address-book w-4 text-center"></i> Graduate Records
-                </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold text-gray-500 hover:bg-emerald-50 hover:text-[#065f46] transition-all">
-                    <i class="fa-solid fa-clipboard-question w-4 text-center"></i> Survey Management
-                </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold text-gray-500 hover:bg-emerald-50 hover:text-[#065f46] transition-all">
-                    <i class="fa-solid fa-briefcase w-4 text-center"></i> Employment Data
-                </a>
-            </div>
-
-            <!-- Request Section -->
-            <div class="mb-6">
-                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest px-3 mb-2">Request</p>
-                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold text-gray-500 hover:bg-emerald-50 hover:text-[#065f46] transition-all">
-                    <i class="fa-solid fa-bell-concierge w-4 text-center"></i> Update Request
-                </a>
-            </div>
-
-            <!-- Reports Section -->
-            <div class="mb-6">
-                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest px-3 mb-2">Reports</p>
-                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold text-gray-500 hover:bg-emerald-50 hover:text-[#065f46] transition-all">
-                    <i class="fa-solid fa-chart-line w-4 text-center"></i> Analytics & Reports
-                </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold text-gray-500 hover:bg-emerald-50 hover:text-[#065f46] transition-all">
-                    <i class="fa-solid fa-shield-halved w-4 text-center"></i> Audit Logs
-                </a>
-            </div>
-
-            <!-- System Section -->
-            <div class="mb-6">
-                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest px-3 mb-2">System</p>
-                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold text-gray-500 hover:bg-emerald-50 hover:text-[#065f46] transition-all">
-                    <i class="fa-solid fa-user-gear w-4 text-center"></i> Admin Accounts
-                </a>
-            </div>
-        </nav>
-
-        <!-- Logout Section -->
-        <div class="p-4 mt-auto border-t border-gray-50 bg-gray-50/50">
-            <button class="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold text-red-600 hover:bg-red-100 transition-all">
-                <i class="fa-solid fa-right-from-bracket w-4 text-center"></i> Logout System
-            </button>
-        </div>
-    </aside>
-
-
+    @include('admin.partials.sidebar')
     <!-- MAIN CONTENT -->
     <main class="flex-1 p-8">
         <header class="flex justify-between items-center mb-8">
@@ -128,104 +46,41 @@
         </div>
 
         <!-- AUDIT TABLE -->
-        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+        <div class="bg-white rounded-md border border-gray-100 shadow-sm overflow-hidden">
             <table class="w-full text-left">
                 <thead>
-                <tr class="bg-gray-50/50 border-b border-gray-100 text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                    <th class="px-8 py-4">Timestamp</th>
+                <tr class="bg-[#1a3d2c] border-b border-gray-100 text-[10px] font-black text-white uppercase tracking-widest">
+                    <th class="px-8 py-4">Number</th>
                     <th class="px-8 py-4">Administrator</th>
                     <th class="px-8 py-4">Action Taken</th>
                     <th class="px-8 py-4">Target Resource</th>
-                    <th class="px-8 py-4 text-center">Status</th>
+                    <th class="px-8 py-4 text-center">Timestamp</th>
+                    <th></th>
                 </tr>
                 </thead>
+                @foreach($audit_logs as $logs)
                 <tbody class="divide-y divide-gray-50">
                 <!-- Log Entry: Request Approval -->
                 <tr class="hover:bg-gray-50/50 transition-colors">
                     <td class="px-8 py-5">
-                        <p class="text-xs font-bold text-gray-700">May 06, 2026</p>
-                        <p class="text-[10px] text-gray-400">09:42:15 PM</p>
+                       {{$logs->log_id}}
                     </td>
                     <td class="px-8 py-5">
-                        <p class="text-xs font-bold text-[#1a3d2c]">Admin Reyes</p>
-                        <p class="text-[9px] text-gray-400 uppercase font-black">Super Administrator</p>
+                        {{$logs->admin_name}}
                     </td>
                     <td class="px-8 py-5">
                         <div class="flex items-center gap-2">
-                            <span class="px-2 py-1 log-create text-[9px] font-black rounded uppercase">Approved Request</span>
+                            <span class="px-2 py-1 log-create text-[9px] font-black rounded uppercase">{{$logs->action}}</span>
                         </div>
                     </td>
                     <td class="px-8 py-5">
-                        <p class="text-xs text-gray-600">Update Request <span class="font-bold">#UR-9021</span></p>
-                        <p class="text-[10px] text-gray-400 italic">Target: Juan Dela Cruz (Alumni)</p>
+                        {{$logs->table_name}}
                     </td>
-                    <td class="px-8 py-5 text-center">
-                        <i class="fa-solid fa-circle-check text-emerald-500" title="Success"></i>
-                    </td>
-                </tr>
-
-                <!-- Log Entry: Record Modification -->
-                <tr class="hover:bg-gray-50/50 transition-colors">
-                    <td class="px-8 py-5">
-                        <p class="text-xs font-bold text-gray-700">May 06, 2026</p>
-                        <p class="text-[10px] text-gray-400">04:15:02 PM</p>
-                    </td>
-                    <td class="px-8 py-5">
-                        <p class="text-xs font-bold text-[#1a3d2c]">Staff Santos</p>
-                        <p class="text-[9px] text-gray-400 uppercase font-black">Registrar Staff</p>
-                    </td>
-                    <td class="px-8 py-5">
-                        <span class="px-2 py-1 log-update text-[9px] font-black rounded uppercase">Edited Question</span>
-                    </td>
-                    <td class="px-8 py-5">
-                        <p class="text-xs text-gray-600">Survey Question <span class="font-bold">#GTS-Q02</span></p>
-                    </td>
-                    <td class="px-8 py-5 text-center">
-                        <i class="fa-solid fa-circle-check text-emerald-500" title="Success"></i>
+                    <td>
+                        {{$logs->timestamp}}
                     </td>
                 </tr>
-
-                <!-- Log Entry: Report Generation -->
-                <tr class="hover:bg-gray-50/50 transition-colors">
-                    <td class="px-8 py-5">
-                        <p class="text-xs font-bold text-gray-700">May 05, 2026</p>
-                        <p class="text-[10px] text-gray-400">11:20:44 AM</p>
-                    </td>
-                    <td class="px-8 py-5">
-                        <p class="text-xs font-bold text-[#1a3d2c]">Admin Reyes</p>
-                        <p class="text-[9px] text-gray-400 uppercase font-black">Super Administrator</p>
-                    </td>
-                    <td class="px-8 py-5">
-                        <span class="px-2 py-1 log-access text-[9px] font-black rounded uppercase">Generated Report</span>
-                    </td>
-                    <td class="px-8 py-5">
-                        <p class="text-xs text-gray-600 font-bold">2025 Annual Employment PDF</p>
-                    </td>
-                    <td class="px-8 py-5 text-center">
-                        <i class="fa-solid fa-circle-check text-emerald-500" title="Success"></i>
-                    </td>
-                </tr>
-
-                <!-- Log Entry: Login Event -->
-                <tr class="hover:bg-gray-50/50 transition-colors">
-                    <td class="px-8 py-5">
-                        <p class="text-xs font-bold text-gray-700">May 05, 2026</p>
-                        <p class="text-[10px] text-gray-400">08:00:10 AM</p>
-                    </td>
-                    <td class="px-8 py-5">
-                        <p class="text-xs font-bold text-[#1a3d2c]">Staff Santos</p>
-                        <p class="text-[9px] text-gray-400 uppercase font-black">Registrar Staff</p>
-                    </td>
-                    <td class="px-8 py-5">
-                        <span class="px-2 py-1 log-access text-[9px] font-black rounded uppercase">System Login</span>
-                    </td>
-                    <td class="px-8 py-5">
-                        <p class="text-xs text-gray-400 font-medium">IP: 192.168.1.45 (Local Office)</p>
-                    </td>
-                    <td class="px-8 py-5 text-center">
-                        <i class="fa-solid fa-circle-check text-emerald-500" title="Success"></i>
-                    </td>
-                </tr>
+                @endforeach
                 </tbody>
             </table>
 
@@ -245,6 +100,4 @@
         </div>
     </main>
 </div>
-
-</body>
-</html>
+@endsection

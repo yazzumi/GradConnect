@@ -1,91 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite('resources/css/app.css')
-    <link rel="icon" href="{{asset('assets/images/isu-logo.png')}}" type="image">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <title>Alumni Records | GradConnect</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f4f7f5; }
-
-        .sidebar-item:hover { background-color: #f8faf9; color: #065f46; }
-        .sidebar-active { background-color: #065f46; color: white; }
-    </style>
-</head>
-<body class="antialiased text-[#1a2e1a]">
+@extends('admin.shared.layout')
+@section('title', 'Graduates Records')
+@section('content')
 
 <div class="flex min-h-screen">
-    <!-- SIDEBAR -->
-    <!-- Modified Sidebar Section -->
-    <aside class="w-64 bg-white border-r border-gray-100 flex flex-col sticky top-0 h-screen">
-        <!-- Logo Section with ISU Theme Colors -->
-        <div class="p-6 flex items-center gap-3 border-b border-gray-50">
-            <img src="{{asset('assets/images/isu-logo.png')}}" alt="Logo" class="w-10 h-10 object-contain">
-            <div class="flex flex-col">
-                <span class="text-base font-extrabold tracking-tight text-[#065f46] leading-none">GradConnect</span>
-                <span class="text-[9px] font-bold text-[#d9a54a] uppercase tracking-tighter">ISU Alumni System</span>
-            </div>
-        </div>
-
-        <nav class="flex-1 px-4 space-y-1 overflow-y-auto pt-4">
-            <!-- Dashboard Link (Standalone) -->
-            <a href="#" class="sidebar-active flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold transition-all mb-4">
-                <i class="fa-solid fa-chart-pie w-4 text-center"></i> Dashboard
-            </a>
-
-            <!-- Alumni Section -->
-            <div class="mb-6">
-                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest px-3 mb-2">Alumni</p>
-                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold text-gray-500 hover:bg-emerald-50 hover:text-[#065f46] transition-all">
-                    <i class="fa-solid fa-address-book w-4 text-center"></i> Graduate Records
-                </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold text-gray-500 hover:bg-emerald-50 hover:text-[#065f46] transition-all">
-                    <i class="fa-solid fa-clipboard-question w-4 text-center"></i> Survey Management
-                </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold text-gray-500 hover:bg-emerald-50 hover:text-[#065f46] transition-all">
-                    <i class="fa-solid fa-briefcase w-4 text-center"></i> Employment Data
-                </a>
-            </div>
-
-            <!-- Request Section -->
-            <div class="mb-6">
-                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest px-3 mb-2">Request</p>
-                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold text-gray-500 hover:bg-emerald-50 hover:text-[#065f46] transition-all">
-                    <i class="fa-solid fa-bell-concierge w-4 text-center"></i> Update Request
-                </a>
-            </div>
-
-            <!-- Reports Section -->
-            <div class="mb-6">
-                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest px-3 mb-2">Reports</p>
-                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold text-gray-500 hover:bg-emerald-50 hover:text-[#065f46] transition-all">
-                    <i class="fa-solid fa-chart-line w-4 text-center"></i> Analytics & Reports
-                </a>
-                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold text-gray-500 hover:bg-emerald-50 hover:text-[#065f46] transition-all">
-                    <i class="fa-solid fa-shield-halved w-4 text-center"></i> Audit Logs
-                </a>
-            </div>
-
-            <!-- System Section -->
-            <div class="mb-6">
-                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest px-3 mb-2">System</p>
-                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold text-gray-500 hover:bg-emerald-50 hover:text-[#065f46] transition-all">
-                    <i class="fa-solid fa-user-gear w-4 text-center"></i> Admin Accounts
-                </a>
-            </div>
-        </nav>
-
-        <!-- Logout Section -->
-        <div class="p-4 mt-auto border-t border-gray-50 bg-gray-50/50">
-            <button class="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-bold text-red-600 hover:bg-red-100 transition-all">
-                <i class="fa-solid fa-right-from-bracket w-4 text-center"></i> Logout System
-            </button>
-        </div>
-    </aside>
-
+    @include('admin.partials.sidebar')
     <!-- MAIN CONTENT -->
     <main class="flex-1 p-8">
         <!-- HEADER (Fixed: No Duplicates) -->
@@ -98,7 +16,7 @@
                 <button class="bg-white border border-gray-100 text-[#1a2e1a] px-5 py-2.5 rounded-md text-xs font-bold shadow-sm hover:bg-gray-50 transition-all">
                     <i class="fa-solid fa-download mr-2"></i> Export
                 </button>
-                <button class="bg-[#065f46] text-white px-5 py-2.5 rounded-md text-xs font-bold shadow-sm hover:bg-[#044d39] transition-all">
+                <button class="bg-[#1a3d2c] text-white px-5 py-2.5 rounded-md text-xs font-bold shadow-sm hover:bg-[#044d39] transition-all">
                     <i class="fa-solid fa-plus mr-2"></i> New Entry
                 </button>
             </div>
@@ -127,24 +45,34 @@
         <div class="bg-white rounded-md border border-gray-100 shadow-sm overflow-hidden">
             <table class="w-full text-left">
                 <thead>
-                <tr class="bg-gray-50/50 text-[10px] font-black text-gray-400 uppercase tracking-widest border-b border-gray-100">
-                    <th class="px-6 py-5">ID Number</th>
-                    <th class="px-6 py-5">Alumni Name</th>
-                    <th class="px-6 py-5">Degree Program</th>
-                    <th class="px-6 py-5">Status</th>
-                    <th class="px-6 py-5 text-right">Action</th>
+                <tr class="bg-[#1a3d2c] text-[10px] font-black text-white uppercase tracking-widest border-b border-gray-100">
+                    <th class="px-6 py-5">Student ID</th>
+                    <th class="px-6 py-5">FullName</th>
+                    <th class="px-6 py-5 ">Sex</th>
+                    <th class="px-6 py-5 ">Date of Birth</th>
+                    <th class="px-6 py-5 ">Email</th>
+                    <th class="px-6 py-5 ">Contact Number</th>
+                    <th class="px-6 py-5 ">Graduation Year</th>
+                    <th class="px-6 py-5 ">Program</th>
+                    <th class="px-6 py-5 ">Civil Status</th>
+                    <th class="px-6 py-5 ">Address</th>
+                    <th class="px-6 py-5 right-text">Actions</th>
                 </tr>
                 </thead>
+                @foreach($graduates as $graduate)
                 <tbody class="text-xs divide-y divide-gray-50">
                 <tr class="hover:bg-gray-50/50 transition-all">
-                    <td class="px-6 py-4 font-bold text-[#065f46]">2023-ISU-102</td>
-                    <td class="px-6 py-4 font-bold">Juan Dela Cruz</td>
-                    <td class="px-6 py-4 text-gray-500 font-medium">BS Information Technology</td>
-                    <td class="px-6 py-4">
-                                <span class="px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-md text-[9px] font-black border border-emerald-100 uppercase">
-                                    <i class="fa-solid fa-robot mr-1"></i> Auto-Verified
-                                </span>
-                    </td>
+                    <td class="px-6 py-4 font-bold text-[#065f46]">{{$graduate->student_id}}</td>
+                    <td class="px-6 py-4 font-bold">{{$graduate->first_name . ' ' . $graduate->middle_name . ' ' . $graduate->last_name}}</td>
+                    <td class="px-6 py-4 text-gray-500 font-medium">{{$graduate->sex}}</td>
+                    <td class="px-6 py-4 text-gray-500 font-medium">{{$graduate->date_of_birth}}</td>
+                    <td class="px-6 py-4 text-gray-500 font-medium">{{$graduate->email}}</td>
+                    <td class="px-6 py-4 text-gray-500 font-medium">{{$graduate->contact_number}}</td>
+                    <td class="px-6 py-4 text-gray-500 font-medium">{{$graduate->graduation_year}}</td>
+                    <td class="px-6 py-4 text-gray-500 font-medium">{{$graduate->program_code}}</td>
+                    <td class="px-6 py-4 text-gray-500 font-medium">{{$graduate->civil_status}}</td>
+                    <td class="px-6 py-4 text-gray-500 font-medium">{{$graduate->city_municipality}}</td>
+
                     <td class="px-6 py-4 text-right">
                         <button class="w-8 h-8 rounded-md bg-gray-50 text-gray-400 hover:bg-[#d9a54a] hover:text-white transition-all">
                             <i class="fa-solid fa-eye text-[10px]"></i>
@@ -154,25 +82,7 @@
                         </button>
                     </td>
                 </tr>
-                <tr class="hover:bg-gray-50/50 transition-all">
-                    <td class="px-6 py-4 font-bold text-[#065f46]">2023-ISU-205</td>
-                    <td class="px-6 py-4 font-bold">Maria Clara</td>
-                    <td class="px-6 py-4 text-gray-500 font-medium">BS Computer Science</td>
-                    <td class="px-6 py-4">
-                                <span class="px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-md text-[9px] font-black border border-emerald-100 uppercase">
-                                    <i class="fa-solid fa-robot mr-1"></i> Auto-Verified
-                                </span>
-                    </td>
-                    <td class="px-6 py-4 text-right">
-                        <button class="w-8 h-8 rounded-md bg-gray-50 text-gray-400 hover:bg-[#d9a54a] hover:text-white transition-all">
-                            <i class="fa-solid fa-eye text-[10px]"></i>
-                        </button>
-                        <button class="w-8 h-8 rounded-md bg-gray-50 text-gray-400 hover:bg-[#065f46] hover:text-white transition-all ml-1">
-                            <i class="fa-solid fa-pen text-[10px]"></i>
-                        </button>
-                    </td>
-                </tr>
-                </tbody>
+                @endforeach
             </table>
 
             <!-- FOOTER / PAGINATION -->
@@ -189,5 +99,4 @@
     </main>
 </div>
 
-</body>
-</html>
+@endsection

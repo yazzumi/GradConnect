@@ -3,16 +3,18 @@
 
 @section('content')
 
-
-
     <div class="min-h-screen text-white relative overflow-hidden font-sans" style="background-image: url('{{ asset('assets/images/isu.png') }}'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: scroll;">
 
   <!-- Visible Green Gradient Overlay - Left to Right Fade -->
-  <div class="absolute inset-0  bg-[#1a3d2c]/90"></div>
+  <div class="absolute inset-0 bg-[#1a3d2c]/90 animate-fade-in"></div>
+
+  <!-- Floating ambient orbs -->
+  <div class="absolute top-20 left-10 w-72 h-72 bg-[#d9a54a]/10 rounded-full blur-[100px] animate-pulse-slow"></div>
+  <div class="absolute bottom-20 right-20 w-96 h-96 bg-emerald-500/10 rounded-full blur-[120px] animate-pulse-slow delay-1000"></div>
 
 
   <!-- Navbar -->
-  <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 px-12 py-6 flex items-center justify-between">
+  <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 px-12 py-6 flex items-center justify-between animate-slide-down">
   <div class="flex items-center gap-2">
     <div class="flex items-center justify-center">
       <img src="{{asset('assets/images/isu-logo.png')}}" alt="ISU Logo" class="w-8 h-8">
@@ -21,10 +23,10 @@
   </div>
 
   <div id="nav-links" class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-200 transition-colors">
-    <a href="#" class="hover:text-amber-500">Home</a>
-    <a href="#" class="hover:text-amber-500">About</a>
-    <a href="#" class="hover:text-amber-500">How It Works</a>
-    <a href="#" class="hover:text-amber-500">Contact</a>
+    <a href="#home" class="hover:text-amber-500">Home</a>
+    <a href="#about" class="hover:text-amber-500">About</a>
+    <a href="#flow" class="hover:text-amber-500">How It Works</a>
+    <a href="#contact" class="hover:text-amber-500">Contact</a>
   </div>
 
   <button class="bg-[#d9a54a] hover:bg-[#c4923e] text-[#1a2e1a] px-6 py-2 rounded-full text-sm font-bold shadow-md">
@@ -33,69 +35,65 @@
 </nav>
 
   <!-- Hero Content -->
-  <main class="relative z-10 px-12 pt-20 pb-32 max-w-7xl mx-auto">
-    <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1 mb-8">
-      <span class="w-2 h-2 bg-[#d9a54a] rounded-full"></span>
+  <main id="home" class="relative z-10 px-12 pt-20 pb-32 max-w-7xl mx-auto">
+    <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1 mb-8 animate-fade-up">
+      <span class="w-2 h-2 bg-[#d9a54a] rounded-full animate-glow-pulse"></span>
       <span class="text-[10px] uppercase tracking-widest font-bold">Isabela State University • Ilagan Campus</span>
     </div>
 
-    <h1 class="text-6xl md:text-7xl font-serif font-semibold mb-2">
+    <h1 class="text-6xl md:text-7xl font-serif font-semibold mb-2 animate-hero-text">
       <span class="text-[#d9a54a]">Track Your Career.</span><br/>
       <span class="not-italic font-bold">Shape Our Future.</span>
     </h1>
 
-    <p class="max-w-xl text-gray-300 mt-6 text-lg leading-relaxed">
+    <p class="max-w-xl text-gray-300 mt-6 text-lg leading-relaxed animate-fade-up delay-300">
       Share your employment journey and help the next generation of ISU Ilagan graduates
       make informed career decisions through real-world data and insights.
     </p>
 
     <!-- Buttons -->
-    <div class="flex items-center gap-4 mt-10">
-      <button id="verificationId" class="bg-[#d9a54a] hover:bg-[#c4923e] text-[#1a2e1a] px-8 py-3 rounded-full font-bold flex items-center gap-2 transition group">
+    <div class="flex items-center gap-4 mt-10 animate-fade-up delay-500">
+      <button id="verificationId" class="bg-[#d9a54a] hover:bg-[#c4923e] text-[#1a2e1a] px-8 py-3 rounded-full font-bold flex items-center gap-2 transition group shadow-lg hover:shadow-[#d9a54a]/30 hover:-translate-y-0.5">
         Start Verification
         <span class="bg-[#1a2e1a]/10 rounded-full p-1 group-hover:translate-x-1 transition-transform">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="right" />
-          </svg>
+          <i class="fa-solid fa-chevron-right text-xs"></i>
         </span>
       </button>
 
-      <button class="border border-white/30 hover:bg-white/10 px-8 py-3 rounded-full font-medium flex items-center gap-2 transition">
+      <button onclick="window.location.href='#about'" class="border border-white/30 hover:bg-white/10 hover:border-white/50 px-8 py-3 rounded-full font-medium flex items-center gap-2 transition hover:-translate-y-0.5">
         Learn More
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
+        <i class="fa-solid fa-arrow-down text-xs"></i>
       </button>
     </div>
 
     <!-- Stats Section -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mt-24 border-t border-white/10 pt-12">
-      <div>
-        <div class="text-4xl font-bold">5,284+</div>
+      <div class="animate-counter" data-target="5284" data-suffix="+">
+        <div class="text-4xl font-bold"><span class="counter-value">0</span>+</div>
         <div class="text-gray-400 text-sm mt-1">Graduates Tracked</div>
       </div>
-      <div>
-        <div class="text-4xl font-bold">98%</div>
+      <div class="animate-counter" data-target="98" data-suffix="%">
+        <div class="text-4xl font-bold"><span class="counter-value">0</span>%</div>
         <div class="text-gray-400 text-sm mt-1">Survey Completion</div>
       </div>
-      <div>
-        <div class="text-4xl font-bold">87%</div>
+      <div class="animate-counter" data-target="87" data-suffix="%">
+        <div class="text-4xl font-bold"><span class="counter-value">0</span>%</div>
         <div class="text-gray-400 text-sm mt-1">Employment Rate</div>
       </div>
     </div>
   </main>
 
   <!-- Decorative Shapes -->
-  <div class="absolute right-1/4 top-1/3 w-24 h-24 border border-white/20 rotate-45 hidden lg:block"></div>
-  <div class="absolute right-10 top-1/2 w-64 h-64 border border-white/5 rounded-full hidden lg:block"></div>
+  <div class="absolute right-1/4 top-1/3 w-24 h-24 border border-white/20 rotate-45 hidden lg:block animate-spin-slow"></div>
+  <div class="absolute right-10 top-1/2 w-64 h-64 border border-white/5 rounded-full hidden lg:block animate-float"></div>
 </div>
-<section class="bg-[#fcfdfc] py-24 px-12">
+<section id="about" class="bg-[#fcfdfc] py-24 px-12">
   <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
     <!-- Left Content -->
-    <div class="space-y-8">
+    <div class="space-y-8 reveal-left">
       <div class="flex items-center gap-2 text-[#d9a54a] font-bold tracking-widest text-xs uppercase">
-        <span>◆</span> ABOUT THE SYSTEM
+        <span class="inline-block animate-diamond-spin">◆</span> ABOUT THE SYSTEM
       </div>
 
       <h2 class="text-5xl font-serif font-bold text-[#1a2e1a] leading-tight">
@@ -109,22 +107,22 @@
         and professional success.
       </p>
 
-      <button class="group flex items-center gap-2 px-6 py-3 border border-gray-200 rounded-full text-sm font-semibold text-[#064e3b] hover:bg-gray-50 transition">
+      <button onclick="window.location.href='#flow'" class="group flex items-center gap-2 px-6 py-3 border border-gray-200 rounded-full text-sm font-semibold text-[#064e3b] hover:bg-gray-50 transition hover:-translate-y-0.5 shadow-sm hover:shadow-md">
         See How It Works
         <span class="group-hover:translate-x-1 transition-transform">→</span>
       </button>
 
       <!-- Stats Row -->
       <div class="grid grid-cols-3 gap-8 pt-8 border-t border-gray-100">
-        <div>
+        <div class="reveal-up delay-100">
           <div class="text-3xl font-bold text-[#064e3b]">5,284+</div>
           <div class="text-xs text-gray-500 font-medium">Graduates Tracked</div>
         </div>
-        <div>
+        <div class="reveal-up delay-200">
           <div class="text-3xl font-bold text-[#064e3b]">98%</div>
           <div class="text-xs text-gray-500 font-medium">Survey Completion Rate</div>
         </div>
-        <div>
+        <div class="reveal-up delay-300">
           <div class="text-3xl font-bold text-[#064e3b]">42</div>
           <div class="text-xs text-gray-500 font-medium">Programs Covered</div>
         </div>
@@ -132,9 +130,9 @@
     </div>
 
     <!-- Right Image Card -->
-    <div class="relative group">
-      <div class="relative rounded-3xl overflow-hidden shadow-2xl">
-        <img src="image_f3d237.jpg" alt="ISU Ilagan Campus" class="w-full h-[600px] object-cover group-hover:scale-105 transition duration-700" />
+    <div class="relative group reveal-right">
+      <div class="relative rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-500">
+        <img src="{{asset('assets/images/isu.png')}}" alt="ISU Ilagan Campus" class="w-full h-[600px] object-cover group-hover:scale-105 transition duration-700" />
 
         <!-- Image Overlays -->
         <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
@@ -152,7 +150,7 @@
 
   </div>
 </section>
-<section class="bg-[#f1f5f1] py-24 px-12 relative overflow-hidden">
+<section id="flow" class="bg-[#f1f5f1] py-24 px-12 relative overflow-hidden">
   <div class="max-w-7xl mx-auto">
     <!-- Section Header -->
     <div class="mb-16">
@@ -167,45 +165,45 @@
       <div class="hidden lg:block absolute top-1/4 left-0 w-full h-px border-t-2 border-dashed border-[#d9a54a]/30 z-0"></div>
 
       <!-- Step 01 -->
-      <div class="relative z-10 bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
-        <div class="w-12 h-12 rounded-full border-2 border-[#d9a54a] flex items-center justify-center text-[#d9a54a] font-bold mb-6 bg-white">
+      <div class="relative z-10 bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-gray-100 reveal-up">
+        <div class="w-12 h-12 rounded-full border-2 border-[#d9a54a] flex items-center justify-center text-[#d9a54a] font-bold mb-6 bg-white group-hover:scale-110 transition-transform">
           01
         </div>
         <h3 class="text-xl font-bold text-[#1a2e1a] mb-4">Verify Alumni Info</h3>
         <p class="text-gray-600 text-sm leading-relaxed">
-          Confirm your identity using your student ID, program, and year graduated to access the system.Enter your official alumni details to be matched with ISU Ilagan records. Only verified alumni can access the system.
-
+            Verify your identity using your school details to access the system. Only verified alumni can proceed.
+        </p>
       </div>
 
       <!-- Step 02 -->
-      <div class="relative z-10 bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+      <div class="relative z-10 bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-gray-100 reveal-up delay-100">
         <div class="w-12 h-12 rounded-full border-2 border-[#d9a54a] flex items-center justify-center text-[#d9a54a] font-bold mb-6 bg-white">
           02
         </div>
         <h3 class="text-xl font-bold text-[#1a2e1a] mb-4">Access and Complete Survey</h3>
         <p class="text-gray-600 text-sm leading-relaxed">
-          Once verified, answer the tracer survey by providing your current employment status and career information.
+            Once verified, complete the tracer survey with your current employment and career details.
         </p>
       </div>
 
       <!-- Step 03 -->
-      <div class="relative z-10 bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+      <div class="relative z-10 bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-gray-100 reveal-up delay-200">
         <div class="w-12 h-12 rounded-full border-2 border-[#d9a54a] flex items-center justify-center text-[#d9a54a] font-bold mb-6 bg-white">
           03
         </div>
         <h3 class="text-xl font-bold text-[#1a2e1a] mb-4">Submit and Store Responses</h3>
         <p class="text-gray-600 text-sm leading-relaxed">
-        our responses are securely recorded in the system and used for alumni tracking, reports, and data analysis.</p>
+            Your responses are securely stored and used for alumni tracking, reports, and analysis.</p>
       </div>
 
       <!-- Step 04 -->
-      <div class="relative z-10 bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+      <div class="relative z-10 bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-gray-100 reveal-up delay-300">
         <div class="w-12 h-12 rounded-full border-2 border-[#d9a54a] flex items-center justify-center text-[#d9a54a] font-bold mb-6 bg-white">
           04
         </div>
         <h3 class="text-xl font-bold text-[#1a2e1a] mb-4">Request Updates</h3>
         <p class="text-gray-600 text-sm leading-relaxed">
-          If your information changes, submit an update request. Changes will be reviewed and approved by OSAS before being applied.
+            If your details change, submit an update request for OSAS review and approval before updates are applied.
         </p>
       </div>
 
@@ -213,23 +211,23 @@
   </div>
 </section>
 
-<section class="bg-[#1a3d2c] py-24 px-12 text-center text-white relative">
+<section class="bg-[#1a3d2c] py-24 px-12 text-center text-white relative overflow-hidden">
   <!-- Small Dot Pattern Overlay (optional, for texture matching) -->
-  <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(#fff 1px, transparent 0); background-size: 20px 20px;"></div>
+  <div class="absolute inset-0 opacity-5 animate-pan" style="background-image: radial-gradient(#fff 1px, transparent 0); background-size: 20px 20px;"></div>
 
   <div class="max-w-6xl mx-auto relative z-10">
     <!-- Section Label -->
-    <span class="text-[#d9a54a] font-bold text-xs uppercase tracking-[0.4em]">
+    <span class="text-[#d9a54a] font-bold text-xs uppercase tracking-[0.4em] reveal-up">
       Data Privacy
     </span>
 
     <!-- Main Heading -->
-    <h2 class="text-5xl font-serif font-bold mt-4 mb-12">
+    <h2 class="text-5xl font-serif font-bold mt-4 mb-12 reveal-up delay-100">
       Your Data, Protected
     </h2>
 
     <!-- Two-Column Text Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-left text-gray-200 text-base leading-relaxed">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-left text-gray-200 text-base leading-relaxed reveal-up delay-200">
       <p>
         All employment data collected through GradConnect is used solely for alumni
         tracking and institutional reporting purposes. Personal identifiers are kept
@@ -245,17 +243,15 @@
     </div>
 
     <!-- Call to Action Button -->
-    <div class="mt-16">
-      <a href="#" class="inline-flex items-center gap-2 px-8 py-3 border border-white/30 rounded-full text-sm font-semibold hover:bg-white/10 transition">
+    <div class="mt-16 reveal-up delay-300">
+      <a href="#" class="inline-flex items-center gap-2 px-8 py-3 border border-white/30 rounded-full text-sm font-semibold hover:bg-white/10 hover:border-white/50 transition hover:-translate-y-0.5">
         Read Full Privacy Policy
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-        </svg>
+        <i class="fa-solid fa-arrow-right text-xs"></i>
       </a>
     </div>
   </div>
 </section>
-<section class="bg-[#f1f5f1] py-24 px-12">
+<section id="contact" class="bg-[#f1f5f1] py-24 px-12">
   <div class="max-w-6xl mx-auto text-center">
     <!-- Section Header -->
     <div class="mb-16">
@@ -267,34 +263,27 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
 
       <!-- Email Card -->
-      <div class="bg-white p-10 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center">
+      <div class="bg-white p-10 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center reveal-up hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
         <div class="w-14 h-14 bg-[#f1f5f1] rounded-full flex items-center justify-center mb-6">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#064e3b]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-          </svg>
+          <i class="fa-solid fa-envelope text-xl text-[#064e3b]"></i>
         </div>
         <h3 class="text-xl font-bold text-[#064e3b] mb-3">Email</h3>
         <p class="text-gray-500 text-sm">osas.isu.ilagan@yahoo.com</p>
       </div>
 
       <!-- Phone Card -->
-      <div class="bg-white p-10 rounded-2xl shadow-lg border border-gray-100 flex flex-col items-center translate-y-[-4px]">
+      <div class="bg-white p-10 rounded-2xl shadow-lg border border-gray-100 flex flex-col items-center translate-y-[-4px] reveal-up delay-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
         <div class="w-14 h-14 bg-[#f1f5f1] rounded-full flex items-center justify-center mb-6">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#064e3b]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-          </svg>
+          <i class="fa-solid fa-phone text-xl text-[#064e3b]"></i>
         </div>
         <h3 class="text-xl font-bold text-[#064e3b] mb-3">Phone</h3>
         <p class="text-gray-500 text-sm">(078) 123-4567</p>
       </div>
 
       <!-- Location Card -->
-      <div class="bg-white p-10 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center">
+      <div class="bg-white p-10 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center reveal-up delay-200 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
         <div class="w-14 h-14 bg-[#f1f5f1] rounded-full flex items-center justify-center mb-6">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#064e3b]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
+          <i class="fa-solid fa-location-dot text-xl text-[#064e3b]"></i>
         </div>
         <h3 class="text-xl font-bold text-[#064e3b] mb-3">Office Location</h3>
         <p class="text-gray-500 text-sm leading-relaxed max-w-[200px]">
@@ -305,8 +294,8 @@
     </div>
 
     <!-- Support Button -->
-    <button class="bg-[#d9a54a] hover:bg-[#c4923e] text-[#1a2e1a] px-8 py-4 rounded-full font-bold inline-flex items-center gap-3 transition shadow-md">
-      <span class="w-6 h-6 rounded-full border-2 border-[#1a2e1a]/20 flex items-center justify-center text-sm">?</span>
+    <button class="bg-[#d9a54a] hover:bg-[#c4923e] text-[#1a2e1a] px-8 py-4 rounded-full font-bold inline-flex items-center gap-3 transition shadow-md hover:shadow-lg hover:-translate-y-0.5 reveal-up delay-300 animate-heartbeat">
+      <span class="w-6 h-6 rounded-full border-2 border-[#1a2e1a]/20 flex items-center justify-center text-sm"><i class="fa-solid fa-question text-[10px]"></i></span>
       Need Help? Contact Us
     </button>
   </div>
@@ -321,7 +310,7 @@
         <div class="flex items-center gap-2">
           <div class="flex items-center justify-center">
             <!-- Graduation Cap Icon -->
-            <img src="../../assets/images/isu-logo.png" alt="ISU Logo" class="w-8 h-8">
+            <img src="{{asset('assets/images/isu-logo.png')}}" alt="ISU Logo" class="w-8 h-8">
           </div>
           <span class="text-xl font-bold tracking-tight">GradConnect</span>
         </div>
@@ -344,9 +333,7 @@
             />
           </div>
           <button class="bg-[#d9a54a] hover:bg-[#c4923e] p-3 rounded-lg text-[#1a3d2c] transition shadow-md">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-            </svg>
+            <i class="fa-solid fa-bell"></i>
           </button>
         </div>
       </div>
@@ -406,18 +393,16 @@
       <!-- Social Icons -->
       <div class="flex items-center gap-3">
         <a href="#" class="w-9 h-9 border border-white/10 rounded flex items-center justify-center hover:bg-white/5 transition">
-          <span class="text-xs">f</span>
+          <i class="fa-brands fa-facebook-f text-xs"></i>
         </a>
         <a href="#" class="w-9 h-9 border border-white/10 rounded flex items-center justify-center hover:bg-white/5 transition">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M3 3h18v18H3z"/></svg>
+          <i class="fa-brands fa-x-twitter text-xs"></i>
         </a>
         <a href="#" class="w-9 h-9 border border-white/10 rounded flex items-center justify-center hover:bg-white/5 transition">
-          <span class="text-xs">in</span>
+          <i class="fa-brands fa-linkedin-in text-xs"></i>
         </a>
         <a href="#" class="w-9 h-9 border border-white/10 rounded flex items-center justify-center hover:bg-white/5 transition">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-          </svg>
+          <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
         </a>
       </div>
 
@@ -428,14 +413,14 @@
     </div>
   </div>
 </footer>
+
+
 <script>
+  $('#verificationId').click(function (){
+     window.location.href="{{ route('verification') }}";
+  });
 
-
-    $('#verificationId').click(function (){
-       window.location.href="{{ route('verification') }}";
-    });
-
-
+  // Navbar scroll effect
   window.addEventListener('scroll', () => {
     const nav = document.getElementById('navbar');
     const logo = document.getElementById('nav-logo');
@@ -453,6 +438,43 @@
       links.classList.replace('text-gray-600', 'text-gray-200');
     }
   });
+
+  // IntersectionObserver for scroll-triggered reveals
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right').forEach(el => revealObserver.observe(el));
+
+  // Counter animation
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const container = entry.target;
+        const valueEl = container.querySelector('.counter-value');
+        const target = parseInt(container.dataset.target, 10);
+        const duration = 1500;
+        const startTime = performance.now();
+
+        function updateCounter(now) {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+          valueEl.textContent = Math.floor(eased * target).toLocaleString();
+          if (progress < 1) requestAnimationFrame(updateCounter);
+        }
+        requestAnimationFrame(updateCounter);
+        counterObserver.unobserve(container);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.animate-counter').forEach(el => counterObserver.observe(el));
 </script>
 
 
